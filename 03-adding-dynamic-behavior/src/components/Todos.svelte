@@ -1,8 +1,8 @@
 <script>
   export let todos = [];
 
-  let totalTodos = todos.length;
-  let completedTodos = todos.filter((todo) => todo.completed).length;
+  $: totalTodos = todos.length;
+  $: completedTodos = todos.filter((todo) => todo.completed).length;
 
   function removeTodo(todo) {
     todos.filter((todo) => todo.id !== todo.id);
