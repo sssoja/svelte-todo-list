@@ -21,7 +21,6 @@
     todos = [...todos, { id: newTodoId, name: newTodoName, completed: false }];
     newTodoName = "";
   }
-  $: console.log(todos);
 
   let filter = "all";
   const filterTodos = (filter, todos) =>
