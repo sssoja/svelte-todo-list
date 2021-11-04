@@ -1,12 +1,12 @@
 <script>
-  let todos = [
-    { id: 1, name: "Create a Svelte starter app", completed: true },
-    { id: 2, name: "Create your first component", completed: true },
-    { id: 3, name: "Complete the rest of the tutorial", completed: false },
-  ];
+  export let todos = [];
 
   let totalTodos = todos.length;
   let completedTodos = todos.filter((todo) => todo.completed).length;
+
+  function removeTodo(todo) {
+    todos.filter((todo) => todo.id !== todo.id);
+  }
 </script>
 
 <!-- Todos.svelte -->
@@ -50,7 +50,8 @@
             <input
               type="checkbox"
               id="todo-{todo.id}"
-              checked={todo.completed} />
+              checked={todo.completed}
+              onclick={() => (todo.completed = !todo.completed)} />
             <label for="todo-{todo.id}" class="todo-label"> {todo.name} </label>
           </div>
           <div class="btn-group">
@@ -58,7 +59,10 @@
               Edit
               <span class="visually-hidden">{todo.name}</span>
             </button>
-            <button type="button" class="btn btn__danger">
+            <button
+              type="button"
+              class="btn btn__danger"
+              on:click={() => removeTodo(todo)}>
               Delete
               <span class="visually-hidden">{todo.name}</span>
             </button>
